@@ -22,9 +22,9 @@ const server = http.createServer((req, res) => {
   // Decode URL and remove query strings
   let safeUrl = decodeURI(req.url.split('?')[0]);
 
-  // Route root '/' directly to 'index.html'
+  // Route root '/' directly to 'FFX.html'
   if (safeUrl === '/' || safeUrl === '') {
-    safeUrl = '/index.html';
+    safeUrl = '/FFX.html';
   }
 
   // Prevent directory traversal
@@ -37,8 +37,8 @@ const server = http.createServer((req, res) => {
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
-      // Fallback: If route not found, serve index.html
-      const fallbackPath = path.join(ROOT_DIR, 'index.html');
+      // Fallback: If route not found, serve FFX.html
+      const fallbackPath = path.join(ROOT_DIR, 'FFX.html');
       fs.stat(fallbackPath, (fbErr, fbStats) => {
         if (!fbErr && fbStats.isFile()) {
           serveFile(fallbackPath, res);
